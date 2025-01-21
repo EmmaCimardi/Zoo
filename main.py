@@ -1,12 +1,12 @@
-import json, os, random
+import json, os
 from flask import Flask, request, render_template, redirect 
 
-class Client:
-    def __init__(self, ClientId, ClientName, ClientLastName,  ClientNationality):
-        self.ID = ClientId
-        self.FirstName = ClientName
-        self.LastName = ClientLastName
-        self.Nationality = ClientNationality
+class Animal:
+    def __init__(self, AnimalId, AnimalName, AnimalWeight, AnimalHeight):
+        self.ID = AnimalId
+        self.FirstName = AnimalName
+        self.Weight = AnimalWeight
+        self.Height = AnimalHeight
     
     def getID(self):
         return self.ID
@@ -14,11 +14,11 @@ class Client:
     def getFirstName(self):
         return self.FirstName
     
-    def getLastName(self):
-        return self.LastName
+    def getWeight(self):
+        return self.Weight
     
-    def getNationality(self):
-        return self.Nationality
+    def getHeight(self):
+        return self.Height
     
     # Root / path for index page
 @app.route('/', methods=['GET'])
@@ -26,119 +26,119 @@ def index():
     devName = 'Luca Roveroni'
     return render_template('index.html', dev_name=devName)
 
-# Get Clients from file
-# Path: GET /Clients
-@app.route('/Clients', methods=['GET'])
-def get_Clients():
-    with open('./db/Clients.json', 'r') as file:
+# Get Animals from file
+# Path: GET /Animals
+@app.route('/Animals', methods=['GET'])
+def get_Animals():
+    with open('./db/Animals.json', 'r') as file:
         data = json.load(file)
         
-    ClientList = []
+    AnimalList = []
     
-    # Cycle over each JSON object and create a new Client object
+    # Cycle over each JSON object and create a new Animal object
     for jsonFile in data:
-        Client = Client(int(jsonFile['ID']), jsonFile['FirstName'], jsonFile['LastName'], jsonFile['Nationality'])
-        ClientList.append(Client)
+        Animal = Animal(int(jsonFile['ID']), jsonFile['FirstName'], jsonFile['Weight'], jsonFile['Height'])
+        AnimalList.append(Animal)
     
-    return render_template('index.html', client=ClientList)
+    return render_template('index.html', Animal=AnimalList)
 
-# Add Client to file
+# Add Animal to file
 # Path: POST /new
 @app.route('/new', methods=['POST'])
-def add_Client():
-    # Open Client file
-    with open('./db/Clients.json', 'r') as file:
+def add_Animal():
+    # Open Animal file
+    with open('./db/Animals.json', 'r') as file:
         data = json.load(file)
     
     # Check last used id and increment it
-    lastClientId = data[-1]['ID']
-    if lastClientId != '':
-        lastClientId = int(lastClientId) + 1
+    lastAnimalId = data[-1]['ID']
+    if lastAnimalId != '':
+        lastAnimalId = int(lastAnimalId) + 1
     else:
-        lastClientId = 1
+        lastAnimalId = 1
     
     
         
-    # Add new Client to Clients
-    data.append(newClient.__dict__)
+    # Add new Animal to Animals
+    data.append(newAnimal.__dict__)
     
     # Save updated JSON file
-    with open('./db/Clients.json', 'w') as outfile:
+    with open('./db/Animals.json', 'w') as outfile:
         json.dump(data, outfile)
     
-    return redirect('/Clients')
+    return redirect('/Animals')
 
 # Render EDIT page
 # Path: GET /edit?id=XX
 @app.route('/edit', methods=['GET'])
-def show_edit_Client():
-    Client_id = int(request.args.get('id'))
+def show_edit_Animal():
+    Animal_id = int(request.args.get('id'))
     
-    # Get Client info from json file
-    with open('./db/Clients.json', 'r') as file:
+    # Get Animal info from json file
+    with open('./db/Animals.json', 'r') as file:
         data = json.load(file)
     
-    # Search Client
+    # Search Animal
     for i in range(len(data)):
-        if int(data[i]['ID']) == Client_id:
-            jsonClient = data[i]
+        if int(data[i]['ID']) == Animal_id:
+            jsonAnimal = data[i]
             break
     
-    # Pass Client object to html template 
-    ClientToEdit = Client(jsonClient['ID'], jsonClient['FirstName'], jsonClient['LastName'], jsonClient['Birthday'], jsonClient['Nationality'])
+    # Pass Animal object to html template 
+    AnimalToEdit = Animal(jsonAnimal['ID'], jsonAnimal['FirstName'], jsonAnimal['Weight'], jsonAnimal['Birthday'], jsonAnimal['Height'])
     
-    return render_template('edit.html', Client=ClientToEdit)
+    return render_template('edit.html', Animal=AnimalToEdit)
 
-# Save modified existing Client in file
+# Save modified existing Animal in file
 # Path: POST /save
 @app.route('/save', methods=['POST'])
-def edit_Client():
+def edit_Animal():
     # Get parameters from html form
-    Client_id = int(request.form.get('ClientId'))
-    Client_first_name = request.form.get('ClientFirstName')
-    Client_last_name = request.form.get('ClientLastName')
-    Client_birthday = request.form.get('ClientBirthday')
-    Client_nationality = request.form.get('ClientNationality')
+    Animal_id = int(request.form.get('AnimalId'))
+    Animal_first_name = request.form.get('AnimalFirstName')
+    Animal_last_name = request.form.get('AnimalWeight')
+    Animal_birthday = request.form.get('AnimalBirthday')
+    Animal_Height = request.form.get('AnimalHeight')
     
-    modifiedClient = Client(Client_id, Client_first_name, Client_last_name, Client_birthday, Client_nationality)
+    modifiedAnimal = Animal(Animal_id, Animal_first_name, Animal_last_name, Animal_birthday, Animal_Height)
     
-    # Get Client info from json file
-    with open('./db/Clients.json', 'r') as file:
+    # Get Animal info from json file
+    with open('./db/Animals.json', 'r') as file:
         data = json.load(file)
     
-    # Check Client position and remove it from file
+    # Check Animal position and remove it from file
     for i in range(len(data)):
-        if int(data[i]['ID']) == Client_id:
+        if int(data[i]['ID']) == Animal_id:
             data.pop(i)
             break
     
-    # Add the modified Client like new one
-    data.append(modifiedClient.__dict__)
+    # Add the modified Animal like new one
+    data.append(modifiedAnimal.__dict__)
     
     # Save updated JSON file
-    with open('./db/Clients.json', 'w') as outfile:
+    with open('./db/Animals.json', 'w') as outfile:
         json.dump(data, outfile)
     
-    return redirect('/Clients')
+    return redirect('/Animals')
 
-# Remove Client in file
+# Remove Animal in file
 # Path: POST /delete
 @app.route('/delete', methods=['POST'])
-def remove_Client():
-    Client_id = int(request.form.get('ClientId'))
+def remove_Animal():
+    Animal_id = int(request.form.get('AnimalId'))
     
     # Open JSON file
-    with open('./db/Clients.json', 'r') as file:
+    with open('./db/Animals.json', 'r') as file:
         data = json.load(file) 
     
-    # Remove the Client from JSON file
+    # Remove the Animal from JSON file
     for i in range(len(data)):
-        if int(data[i]['ID']) == Client_id:
+        if int(data[i]['ID']) == Animal_id:
             data.pop(i)
             break
     
     # Save updated JSON file
-    with open('./db/Clients.json', 'w') as outfile:
+    with open('./db/Animals.json', 'w') as outfile:
         json.dump(data, outfile)
         
-    return redirect('/Clients')
+    return redirect('/Animals')
