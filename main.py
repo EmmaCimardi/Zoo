@@ -2,11 +2,11 @@ import json, os
 from flask import Flask, request, render_template, redirect 
 
 class Animal:
-    def __init__(self, AnimalId, AnimalName, AnimalWeight, AnimalHeight):
+    def __init__(self, AnimalId, AnimalName, AnimalWeight,AnimalSpecies ):
         self.ID = AnimalId
         self.FirstName = AnimalName
         self.Weight = AnimalWeight
-        self.Height = AnimalHeight
+        self.Species = AnimalSpecies
     
     def getID(self):
         return self.ID
@@ -17,8 +17,8 @@ class Animal:
     def getWeight(self):
         return self.Weight
     
-    def getHeight(self):
-        return self.Height
+    def getSpecies(self):
+        return self.Species
     
     # Root / path for index page
 @app.route('/', methods=['GET'])
@@ -37,7 +37,7 @@ def get_Animals():
     
     # Cycle over each JSON object and create a new Animal object
     for jsonFile in data:
-        Animal = Animal(int(jsonFile['ID']), jsonFile['FirstName'], jsonFile['Weight'], jsonFile['Height'])
+        Animal = Animal(int(jsonFile['ID']), jsonFile['FirstName'], jsonFile['Weight'], jsonFile['Species'])
         AnimalList.append(Animal)
     
     return render_template('index.html', Animal=AnimalList)
@@ -85,7 +85,7 @@ def show_edit_Animal():
             break
     
     # Pass Animal object to html template 
-    AnimalToEdit = Animal(jsonAnimal['ID'], jsonAnimal['FirstName'], jsonAnimal['Weight'], jsonAnimal['Birthday'], jsonAnimal['Height'])
+    AnimalToEdit = Animal(jsonAnimal['ID'], jsonAnimal['FirstName'], jsonAnimal['Weight'], jsonAnimal['Birthday'], jsonAnimal['Species'])
     
     return render_template('edit.html', Animal=AnimalToEdit)
 
@@ -98,9 +98,9 @@ def edit_Animal():
     Animal_first_name = request.form.get('AnimalFirstName')
     Animal_last_name = request.form.get('AnimalWeight')
     Animal_birthday = request.form.get('AnimalBirthday')
-    Animal_Height = request.form.get('AnimalHeight')
+    Animal_Species = request.form.get('')
     
-    modifiedAnimal = Animal(Animal_id, Animal_first_name, Animal_last_name, Animal_birthday, Animal_Height)
+    modifiedAnimal = Animal(Animal_id, Animal_first_name, Animal_last_name, Animal_birthday, Animal_Species)
     
     # Get Animal info from json file
     with open('./db/Animals.json', 'r') as file:
