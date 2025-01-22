@@ -23,14 +23,14 @@ class Animal:
     # Root / path for index page
 @app.route('/', methods=['GET'])
 def index():
-    devArea = 'Luca Roveroni'
-    return render_template('index.html', dev_Area=devArea)
+    devArea = 'Emma, Mirko, Leonardo'
+    return render_template('agg-togli.html', dev_Area=devArea)
 
 # Get Animals from file
 # Path: GET /Animals
 @app.route('/Animals', methods=['GET'])
 def get_Animals():
-    with open('./db/Animals.json', 'r') as file:
+    with open('/FileJson/dati.json', 'r') as file:
         data = json.load(file)
         
     AnimalList = []
@@ -40,14 +40,14 @@ def get_Animals():
         Animal = Animal(int(jsonFile['ID']), jsonFile['FirstArea'], jsonFile['Weight'], jsonFile['Species'])
         AnimalList.append(Animal)
     
-    return render_template('index.html', Animal=AnimalList)
+    return render_template('agg-togli.html', Animal=AnimalList)
 
 # Add Animal to file
 # Path: POST /new
 @app.route('/new', methods=['POST'])
 def add_Animal():
     # Open Animal file
-    with open('./db/Animals.json', 'r') as file:
+    with open('/FileJson/dati.json', 'r') as file:
         data = json.load(file)
     
     # Check last used id and increment it
@@ -63,7 +63,7 @@ def add_Animal():
     data.append(newAnimal.__dict__)
     
     # Save updated JSON file
-    with open('./db/Animals.json', 'w') as outfile:
+    with open('/FileJson/dati.json', 'w') as outfile:
         json.dump(data, outfile)
     
     return redirect('/Animals')
@@ -97,10 +97,9 @@ def edit_Animal():
     Animal_id = int(request.form.get('AnimalId'))
     Animal_first_Area = request.form.get('AnimalFirstArea')
     Animal_last_Area = request.form.get('AnimalWeight')
-    Animal_birthday = request.form.get('AnimalBirthday')
     Animal_Species = request.form.get('')
     
-    modifiedAnimal = Animal(Animal_id, Animal_first_Area, Animal_last_Area, Animal_birthday, Animal_Species)
+    modifiedAnimal = Animal(Animal_id, Animal_first_Area, Animal_last_Area,  Animal_Species)
     
     # Get Animal info from json file
     with open('./db/Animals.json', 'r') as file:
