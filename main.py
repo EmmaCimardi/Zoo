@@ -75,7 +75,7 @@ def show_edit_Animal():
     Animal_id = int(request.args.get('id'))
     
     # Get Animal info from json file
-    with open('./db/Animals.json', 'r') as file:
+    with open('/FileJson/dati.json', 'r') as file:
         data = json.load(file)
     
     # Search Animal
@@ -95,14 +95,14 @@ def show_edit_Animal():
 def edit_Animal():
     # Get parameters from html form
     Animal_id = int(request.form.get('AnimalId'))
-    Animal_first_Area = request.form.get('AnimalFirstArea')
+    Animal_first_Area = request.form.get('AnimalArea')
     Animal_last_Area = request.form.get('AnimalWeight')
-    Animal_Species = request.form.get('')
+    Animal_Species = request.form.get('AnimalSpecies')
     
     modifiedAnimal = Animal(Animal_id, Animal_first_Area, Animal_last_Area,  Animal_Species)
     
     # Get Animal info from json file
-    with open('./db/Animals.json', 'r') as file:
+    with open('/FileJson/dati.json', 'r') as file:
         data = json.load(file)
     
     # Check Animal position and remove it from file
@@ -115,7 +115,7 @@ def edit_Animal():
     data.append(modifiedAnimal.__dict__)
     
     # Save updated JSON file
-    with open('./db/Animals.json', 'w') as outfile:
+    with open('/FileJson/dati.json', 'w') as outfile:
         json.dump(data, outfile)
     
     return redirect('/Animals')
@@ -127,7 +127,7 @@ def remove_Animal():
     Animal_id = int(request.form.get('AnimalId'))
     
     # Open JSON file
-    with open('./db/Animals.json', 'r') as file:
+    with open('/FileJson/dati.json', 'r') as file:
         data = json.load(file) 
     
     # Remove the Animal from JSON file
@@ -137,7 +137,7 @@ def remove_Animal():
             break
     
     # Save updated JSON file
-    with open('./db/Animals.json', 'w') as outfile:
+    with open('/FileJson/dati.json', 'w') as outfile:
         json.dump(data, outfile)
         
     return redirect('/Animals')
