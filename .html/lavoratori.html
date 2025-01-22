@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Workers Area</title>
 </head>
-<body>
+<body >
 
   <div> <!--Inizio Nav-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,31 +25,43 @@
                 <li class="nav-item">
                   <a class="nav-link" href="#">About us</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Login</a>
-                </li>
             </ul>
           </div>
         </div>
       </nav>
 </div> <!--Fine Nav bar -->
 
-    <div> <!-- inizio form-->
+    <div > <!-- inizio form-->
 
-        <form style="width: 300px; margin-left: 600px;margin-top: 150px;">
-            <div class="mb-3" >
-              <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            <button type="submit" class="btn btn-success">Submit</button>
-            <button type="submit" class="btn btn-success">Nuovo utente</button>
-          </form>
+      <script>
+        // Funzione per il controllo della password
+        function checkPassword(event) {
+            event.preventDefault(); 
+            const password = document.getElementById("exampleInputPassword1").value;
 
-    </div><!--fine form-->
+            const correctPassword = "1234";
+
+            if (password === correctPassword) {
+                window.location.href = "modifica.html";x
+            } else {
+                alert("Password errata. Riprova.");
+            }
+        }
+    </script>
+<div class="container mt-5">
+  <form onsubmit="checkPassword(event)">
+      <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+      </div>
+      <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" required>
+      </div>
+      <button type="submit" class="btn btn-success">Submit</button>
+      <button type="button" class="btn btn-secondary" onclick="window.location.href='new_user.html'">Nuovo utente</button>
+  </form>
+</div>
 
 
 
