@@ -36,36 +36,32 @@
       <script>
         // Funzione per il controllo della password
         function checkPassword(event) {
-            event.preventDefault(); // Evita il comportamento predefinito del form
+            event.preventDefault(); 
             const password = document.getElementById("exampleInputPassword1").value;
 
-            // Password corretta (puoi sostituirla con quella desiderata)
             const correctPassword = "1234";
 
             if (password === correctPassword) {
-                // Reindirizza l'utente se la password è corretta
-                window.location.href = "modifica.html"; // Cambia con il nome del tuo file index
+                window.location.href = "modifica.html";x
             } else {
-                // Mostra un messaggio di errore
                 alert("Password errata. Riprova.");
             }
         }
     </script>
-
-        <form style="width: 300px; margin-left: 600px;margin-top: 150px;">
-            <div class="mb-3" >
-              <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            <button type="submit" class="btn btn-success">Submit</button>
-            <button type="submit" class="btn btn-success">Nuovo utente</button>
-          </form>
-
-    </div><!--fine form-->
+<div class="container mt-5">
+  <form onsubmit="checkPassword(event)">
+      <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+      </div>
+      <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" required>
+      </div>
+      <button type="submit" class="btn btn-success">Submit</button>
+      <button type="button" class="btn btn-secondary" onclick="window.location.href='new_user.html'">Nuovo utente</button>
+  </form>
+</div>
 
 
 
