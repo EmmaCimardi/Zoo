@@ -5,8 +5,8 @@ app= Flask(__name__) #nome della flask application
 
 #/path della risorsa a cui vogliamo accedere
 @app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+def index():
+    return render_template('index.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
