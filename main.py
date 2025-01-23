@@ -1,6 +1,8 @@
 import json, os
 from flask import Flask, request, render_template, redirect 
-
+# Flask App
+template_dir = os.path.abspath('.html')
+app = Flask(__name__, template_folder=template_dir)
 class Animal:
     def __init__(self, AnimalId, AnimalArea, AnimalWeight,AnimalSpecies):
         self.ID = AnimalId
@@ -87,7 +89,7 @@ def show_edit_Animal():
     # Pass Animal object to html template 
     AnimalToEdit = Animal(jsonAnimal['ID'], jsonAnimal['FirstArea'], jsonAnimal['Weight'], jsonAnimal['Birthday'], jsonAnimal['Species'])
     
-    return render_template('edit.html', Animal=AnimalToEdit)
+    return render_template('agg-togli.html', Animal=AnimalToEdit)
 
 # Save modified existing Animal in file
 # Path: POST /save
