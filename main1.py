@@ -11,7 +11,9 @@ def index():
 if __name__ == "__main__":
     app.run(debug=True)
     
-
+@app.route("/animal", methods="['POST']" )
+def crea_animale():
+    data=request.get_json()
 
 #GET
 #POST
