@@ -5,22 +5,5 @@
         "area_a": "grizzly",
         "peso_a": 
     },
-    {
-        "id_a" : 2 ,
-        "specie_a": "scimmia" , 
-        "area_a":,
-        "peso_a": 
-    },
-    {
-        "id_a" : 3 ,
-        "specie_a": "acquila" , 
-        "area_a":,
-        "peso_a": 
-    },
-    {
-        "id_a" : 4,
-        "specie_a": "pappagallo" , 
-        "area_a":,
-        "peso_a": 
-    }
+
 ]
