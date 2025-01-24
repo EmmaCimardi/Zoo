@@ -89,4 +89,33 @@ def edit():
     
     return render_template('agg-togli.html', Animal=AToEdit)
      
+@app.route('/save', methods=['POST'])
+def modifica():
+    # Get parameters from html form
+    a_id = int(request.form.get('userId'))
+    a_specie = request.form.get('ASpecies')
+    a_area = request.form.get('A_Area')
+    a_peso = request.form.get('AWeight')
+ 
     
+    modifiedAnimals = Animal(a_id, a_specie, a_area, a_peso)
+    
+    # Get user info from json file
+    with open('./FileJson/dati.json', 'r') as file:
+        data = json.load(file)
+    
+    # Check user position and remove it from file
+    for i in range(len(data)):
+        if int(data[i]['ID']) == a_id:
+            data.pop(i)
+            break
+    
+    # Add the modified user like new one
+    data.append(modifiedAnimals.__dict__)
+    
+    # Save updated JSON file
+    with open('./FileJson/dati.json', 'w') as outfile:
+        json.dump(data, outfile)
+    
+    return redirect('/animals')
+

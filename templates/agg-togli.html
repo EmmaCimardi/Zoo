@@ -88,7 +88,8 @@
               <form action="/delete" method="post">
               <button type="button" class="btn btn-danger">Delete</button>
               <input type="hidden" value="{{u.getID()}}" name="userId" />
-            <!-- delete --></form>
+           
+            </form> <!-- delete -->
             </td> 
             <td>
              <form action="/edit" method="get">
@@ -104,24 +105,28 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                      <form action="/save" method="post">
                       <div class="input-group input-group-sm mb-3"> <!-- specoe-->
                           <span class="input-group-text" id="inputGroup-sizing-sm">Species</span>
-                          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                          <input type="text" value="{{user.getSpecies()}}" name="ASpecies" style="width: 100px;" />
                         </div>
                       
                         <div class="input-group input-group-sm mb-3"> <!--area-->
                           <span class="input-group-text" id="inputGroup-sizing-sm">Area</span>
-                          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                          <input type="text" value="{{user.getArea()}}" name="A_Area" style="width: 100px;" />
                         </div>
 
                         <div class="input-group input-group-sm mb-3"> <!-- peso-->
                           <span class="input-group-text" id="inputGroup-sizing-sm">Animal Weight</span>
-                          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                          <input type="text" value="{{user.getWeight()}}" name="AWeight" style="width: 100px;" />
                         </div>
+                      </form>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      
                       <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+                    
                     </div>
                   </div>
                 </div>
