@@ -4,9 +4,6 @@ from flask import Flask, request, render_template, redirect
 template_dir = os.path.abspath('./templates')
 app = Flask(__name__, template_folder=template_dir)
 
-if __name__ == "__main__":
-     app.run(debug=True)
-
 #app è il nome della flask application
 
 class Animal:
@@ -32,6 +29,10 @@ class Animal:
 @app.route("/", methods=['GET'])
 def index():
     return render_template('index.html')
+
+@app.route("/about")
+def about():
+    return render_template('about_us.html')
     
 #carica i dati degli animali da un file JSON (dati.json), 
 #li trasforma in oggetti Animal, e quindi li passa al template agg-togli.html per la visualizzazione:
@@ -146,3 +147,7 @@ def remove_user():
         
     return redirect('/animals')
 
+#metto un collegamento alle altre pagine html
+
+if __name__ == "__main__":
+     app.run(debug=True)
