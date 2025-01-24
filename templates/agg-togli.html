@@ -39,7 +39,7 @@
         <div style="margin-left: 260px; margin-bottom: 60px;"> <!--add-->
           <form action="/new" method="POST">
             <a href="add.html"><button type="button" class="btn btn-success">Add animal</button></a>
-          </form>
+          </form></div>
 
     <table class="table">
         <thead>
@@ -61,11 +61,11 @@
             <td>
               <form action="/edit" method="get">
                 <input type="hidden" name="id" value="{{ animale.getID() }}">
-              <a href="edit.html"><button>Modifica</button></a>
+                <a href="edit.html"><button type="button" class="btn btn-dark">Edit</button></a>
             </form>
             <form action="/delete" method="post">
               <input type="hidden" name="userId" value="{{ animale.getID() }}">
-              <button >Elimina</button>
+              <button class="btn btn-dark" >Elimina</button>
           </form>
             </td> 
             

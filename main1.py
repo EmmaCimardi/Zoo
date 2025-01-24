@@ -65,8 +65,8 @@ def add_animale():
         lastAId = 1
    
     a_specie = request.form.get('Specie_animale')
-    a_area = request.form.get('Area:animale')
-    a_peso = request.form.get('Peso:animale')
+    a_area = request.form.get('Area_animale')
+    a_peso = request.form.get('Peso_animale')
     newA = Animal(lastAId, a_specie, a_area, a_peso)
         
     data.append(newA.__dict__) #aggiunge il nuovo animale
@@ -74,8 +74,8 @@ def add_animale():
     # modifica json con nuovo animale
     with open('./FileJson/dati.json', 'w') as outfile:
         json.dump(data, outfile)
-    
-    return render_template('add.html')
+
+    return render_template('agg.togli.html')
     
 @app.route("/edit", methods=['GET'])
 def edit():
