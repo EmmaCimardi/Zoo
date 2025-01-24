@@ -32,7 +32,7 @@ def index():
 
 @app.route("/about")
 def about():
-    return render_template('about_us.html')
+    return render_template('lavoratori.html')
     
 #carica i dati degli animali da un file JSON (dati.json), 
 #li trasforma in oggetti Animal, e quindi li passa al template agg-togli.html per la visualizzazione:
