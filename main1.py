@@ -58,6 +58,7 @@ def add_animale():
         data = json.load(file)
     
     lastAId = data[-1]['ID']
+    
     if lastAId != '':
         lastAId = int(lastAId) + 1
     else:
@@ -90,7 +91,7 @@ def edit():
             json = data[i]
             break
     
-    # Pass User object to html template 
+    # passo ad html
     AToEdit = Animal(json['ID'], json['SPECIE'], json['AREA'], json['PESO'])
     
     return render_template('edit.html', Animal=AToEdit)
