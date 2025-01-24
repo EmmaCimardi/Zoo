@@ -33,6 +33,8 @@ class Animal:
 def index():
     return render_template('index.html')
     
+#carica i dati degli animali da un file JSON (dati.json), 
+#li trasforma in oggetti Animal, e quindi li passa al template agg-togli.html per la visualizzazione:
 @app.route("/animals", methods=['GET'])
 def get_animals():
     with open('./FileJson/dati.json', 'r') as file: #apriamo il file json
@@ -46,7 +48,8 @@ def get_animals():
     
     return render_template('agg-togli.html', dati = anList)
 
-#creiamo un nuovo animale
+#aggiunge un nuovo animale al file JSON. 
+#La logica prevede di ottenere l'ID dell'animale successivo incrementando l'ultimo ID:
 
 @app.route("/new", methods=['POST'])
 def add_animale():
@@ -59,8 +62,11 @@ def add_animale():
         lastAId = int(lastAId) + 1
     else:
         lastAId = 1
-    
-    newA = Animal(lastUserId, random.choice(firstNames), random.choice(lastNames), randomBirthday, random.choice(countries))
+   
+    a_specie = request.form.get('ASpecies')
+    a_area = request.form.get('A_Area')
+    a_peso = request.form.get('AWeight')
+    newA = Animal(lastAId, a_specie, a_area, a_peso)
         
     data.append(newA.__dict__) #aggiunge il nuovo animale
     
@@ -68,7 +74,7 @@ def add_animale():
     with open('./FileJson/dati.json', 'w') as outfile:
         json.dump(data, outfile)
     
-    return redirect('/animals')
+    return render_template('add.html')
     
 @app.route("/edit", methods=['GET'])
 def edit():
@@ -85,10 +91,11 @@ def edit():
             break
     
     # Pass User object to html template 
-    AToEdit = User(json['ID'], json['SPECIE'], json['AREA'], json['PESO'])
+    AToEdit = Animal(json['ID'], json['SPECIE'], json['AREA'], json['PESO'])
     
-    return render_template('agg-togli.html', Animal=AToEdit)
-     
+    return render_template('edit.html', Animal=AToEdit)
+    
+#ermette di salvare le modifiche apportate a un animale. L'animale modificato sostituisce l'originale nel file JSON:
 @app.route('/save', methods=['POST'])
 def modifica():
     # Get parameters from html form
@@ -117,5 +124,24 @@ def modifica():
     with open('./FileJson/dati.json', 'w') as outfile:
         json.dump(data, outfile)
     
+    return redirect('/animals')
+
+
+@app.route('/delete', methods=['POST'])
+def remove_user():
+    a_id = int(request.form.get('userId'))
+    
+    with open('./FileJson/dati.json', 'r') as file:
+        data = json.load(file) 
+    
+    for i in range(len(data)):
+        if int(data[i]['ID']) == a_id:
+            data.pop(i)
+            break
+    
+    # Save updated JSON file
+    with open('./FileJson/dati.json', 'w') as outfile:
+        json.dump(data, outfile)
+        
     return redirect('/animals')
 
