@@ -158,5 +158,30 @@ def remove_user():
 
 #metto un collegamento alle altre pagine html
 
+#da json :
+
+from flask import Flask, render_template
+import json
+
+app = Flask(__name__)
+
+@app.route("/")
+def stampa():
+    with open('./FileJson/dati.json', 'r') as file:
+        data = json.load(file)
+    
+
+    lista_animals = []
+    for item in data:
+        lista_animals.append({
+            'id': item['ID'],
+            'species': item['SPECIE'],
+            'area': item['AREA'],
+            'weight': item['PESO']
+        })
+    
+    # Passiamo la lista degli animali al template
+    return render_template('index.html', animals=lista_animals)
+
 if __name__ == "__main__":
      app.run(debug=True)
