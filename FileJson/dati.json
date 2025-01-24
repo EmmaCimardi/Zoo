@@ -1,9 +1,9 @@
 [
     {
-        "id_a" : 1,
-        "specie_a": "orso" , 
-        "area_a": "grizzly",
-        "peso_a": 
+        "ID" : 1,
+        "SPECIE": "orso" , 
+        "AREA": "grizzly",
+        "PESO": 
     },
 
 ]

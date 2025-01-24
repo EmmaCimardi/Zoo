@@ -1,8 +1,11 @@
 import json, os
 from flask import Flask, request, render_template, redirect 
 # Flask App
-template_dir = os.path.abspath('.html')
+template_dir = os.path.abspath('/templates')
 app = Flask(__name__, template_folder=template_dir)
+if __name__ == "__main__":
+    app.run(debug=True)
+    
 class Animal:
     def __init__(self, AnimalId, AnimalArea, AnimalWeight,AnimalSpecies):
         self.ID = AnimalId

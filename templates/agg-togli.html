@@ -61,7 +61,9 @@
                       <span class="input-group-text" id="inputGroup-sizing-sm">Animal Weight</span>
                       <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                     </div>
+                    <form action="/animals" method="GET">
                     <button type="button" class="btn btn-success">Add animal</button>
+                    </form>
                 </div></div></div></div> </div>
 
     <table class="table">
@@ -75,10 +77,10 @@
         </thead>
         <tbody>
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <th scope="row">{{ id }}</th>
+            <td>{{ specie }}</td>
+            <td>{{ zona }}</td>
+            <td>{{ Peso }}</td>
             <td><button type="button" class="btn btn-danger">Delete</button></td> <!-- delete -->
             <td>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
