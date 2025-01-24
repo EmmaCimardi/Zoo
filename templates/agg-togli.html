@@ -12,7 +12,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="../img/zoo.png" alt="Logo" height="50" class="d-inline-block align-text-top">
+                    <img src="../static/zoo.png" alt="Logo" height="50" class="d-inline-block align-text-top">
                   </a>
               <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                 <ul class="navbar-nav">
@@ -23,7 +23,7 @@
                       <a class="nav-link" href="lavoratori.html">Working area</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">About us</a>
+                      <a class="nav-link" href="about_us.html">About us</a>
                     </li>
                 </ul>
               </div>
@@ -34,11 +34,11 @@
 
     <div style="width: 600px; margin-left: 450px; margin-top: 100px;">
 
-        <h4 style="text-align: center;"> <i> Add, Edit, Delete animals from your Zoo</i></h4>
+        <h4 style="text-align: center;"> <i>Sistema gestione animali</i></h4>
 
         <div style="margin-left: 260px; margin-bottom: 60px;"> <!--add-->
           <form action="/new" method="POST">
-            <a href="add.html"><button type="button" class="btn btn-success" href="add.html">Add animal</button></a>
+            <a href="add.html"><button type="button" class="btn btn-success">Add animal</button></a>
           </form>
 
     <table class="table">
@@ -51,27 +51,24 @@
           </tr>
         </thead>
         <tbody>
-          {% for u in data %}
+          {% for u in dati %}
           <tr>
             <th scope="row">{{u.getId()}} </th>
             <td>{{u.getArea()}} </td>
             <td>{{u.getWeight()}} </td>
             <td>{{u.getSpecies()}} </td>
+
             <td>
-              <form action="/delete" method="post">
-              <button type="button" class="btn btn-danger">Delete</button>
-              <input type="hidden" value="{{u.getID()}}" name="userId" />
-           
-            </form> <!-- delete -->
+              <form action="/edit" method="get">
+                <input type="hidden" name="id" value="{{ animale.getID() }}">
+              <a href="edit.html"><button>Modifica</button></a>
+            </form>
+            <form action="/delete" method="post">
+              <input type="hidden" name="userId" value="{{ animale.getID() }}">
+              <button >Elimina</button>
+          </form>
             </td> 
-            <td>
-             <form action="/edit" method="get">
-              <input type="hidden" name="id" value="{{u.getID()}}" >
-              <a href="edit.html"><button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2" ù>
-                Edit
-              </button></a>
-            </form> 
-            </td> <!-- edit -->
+            
           </tr>
           {% endfor %}
         </tbody>

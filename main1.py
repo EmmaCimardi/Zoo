@@ -64,9 +64,9 @@ def add_animale():
     else:
         lastAId = 1
    
-    a_specie = request.form.get('ASpecies')
-    a_area = request.form.get('A_Area')
-    a_peso = request.form.get('AWeight')
+    a_specie = request.form.get('Specie_animale')
+    a_area = request.form.get('Area:animale')
+    a_peso = request.form.get('Peso:animale')
     newA = Animal(lastAId, a_specie, a_area, a_peso)
         
     data.append(newA.__dict__) #aggiunge il nuovo animale
@@ -101,9 +101,9 @@ def edit():
 def modifica():
     # Get parameters from html form
     a_id = int(request.form.get('userId'))
-    a_specie = request.form.get('ASpecies')
-    a_area = request.form.get('A_Area')
-    a_peso = request.form.get('AWeight')
+    a_specie = request.form.get('Specie_animale')
+    a_area = request.form.get('Area_animale')
+    a_peso = request.form.get('Peso_animale')
  
     
     modifiedAnimals = Animal(a_id, a_specie, a_area, a_peso)

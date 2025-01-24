@@ -6,25 +6,18 @@
     <title>Add</title>
 </head>
 <body>
-    <div class="modal-body">
-        <div class="input-group input-group-sm mb-3"> <!-- speci-->
-            <span class="input-group-text" id="inputGroup-sizing-sm">Species</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-          </div>
-        
-          <div class="input-group input-group-sm mb-3"> <!--area-->
-            <span class="input-group-text" id="inputGroup-sizing-sm">Area</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-          </div>
+    <form action="/new" method="post">
+        <label >Specie:</label><br>
+        <input type="text" id="Specie_animale" name="ASpecies" required><br><br>
 
-          <div class="input-group input-group-sm mb-3"> <!-- peso-->
-            <span class="input-group-text" id="inputGroup-sizing-sm">Animal Weight</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-          </div>
-          <form action="/animals" method="GET">
-          <button type="button" class="btn btn-success">Add animal</button>
-          </form>
-          <a href="agg-togli.html"><button type="button" class="btn btn-success">Exit</button></a>
-      </div>
+        <label >Area:</label><br>
+        <input type="text" id="Area_animale" name="A_Area" required><br><br>
+
+        <label >Peso:</label><br>
+        <input type="number" id="Peso_animale" name="AWeight" required><br><br>
+
+        <button type="submit">Add</button>
+    </form>
+
 </body>
 </html>
