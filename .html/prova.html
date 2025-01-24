@@ -24,11 +24,17 @@
             border: none;
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .card:hover {
-            transform: scale(1.05);
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        .card-img-top {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            max-height: none;
+            object-fit: contain;
         }
         .btn-custom {
             background-color: #8BA255;
@@ -40,6 +46,9 @@
         }
         .btn-custom:hover {
             background-color: #728C3F;
+        }
+        .row {
+            row-gap: 2rem;
         }
         footer {
             text-align: center;
@@ -56,9 +65,9 @@
     </header>
 
     <div class="container py-5">
-        <div class="row g-4">
+        <div class="row">
             <div class="col-md-6 col-lg-4">
-                <div class="card text-center">
+                <div class="card text-center container-fluid">
                     <img src="../img/mappa zoo/africa.png" class="card-img-top" alt="Africa Zone">
                     <div class="card-body">
                         <h5 class="card-title">African Safari</h5>
@@ -67,8 +76,9 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6 col-lg-4">
-                <div class="card text-center">
+                <div class="card text-center container-fluid">
                     <img src="../img/mappa zoo/asian_passage.png" class="card-img-top" alt="Asia Zone">
                     <div class="card-body">
                         <h5 class="card-title">Asian Passage</h5>
@@ -77,8 +87,9 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6 col-lg-4">
-                <div class="card text-center">
+                <div class="card text-center container-fluid">
                     <img src="../img/mappa zoo/pleistocene.png" class="card-img-top" alt="Pleistocene Park">
                     <div class="card-body">
                         <h5 class="card-title">Pleistocene Park</h5>
@@ -87,35 +98,38 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-4">
-        <div class="card text-center">
-            <img src="../img/mappa zoo/fallen_forset.png" class="card-img-top" alt="Asia Zone">
-            <div class="card-body">
-                <h5 class="card-title">Fallen forest Passage</h5>
-                <p class="card-text">Discover exotic tigers, red pandas, and the serene beauty of Asia.</p>
-                <a href=".html-admin/Forest.html" class="btn btn-custom">Explore Now</a>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card text-center container-fluid">
+                    <img src="../img/mappa zoo/fallen_forset.png" class="card-img-top" alt="Fallen Forest">
+                    <div class="card-body">
+                        <h5 class="card-title">Fallen Forest Passage</h5>
+                        <p class="card-text">Immerse yourself in the lush greenery of the Fallen Forest.</p>
+                        <a href=".html-admin/Forest.html" class="btn btn-custom">Explore Now</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-4">
-        <div class="card text-center">
-            <img src="../img/mappa zoo/grizzly_gulch.png" class="card-img-top" alt="Asia Zone">
-            <div class="card-body">
-                <h5 class="card-title">Grizzly gulch Passage</h5>
-                <p class="card-text">Discover exotic tigers, red pandas, and the serene beauty of Asia.</p>
-                <a href=".html-admin/Grizzly.html" class="btn btn-custom">Explore Now</a>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card text-center container-fluid">
+                    <img src="../img/mappa zoo/grizzly_gulch.png" class="card-img-top" alt="Grizzly Gulch">
+                    <div class="card-body">
+                        <h5 class="card-title">Grizzly Gulch Passage</h5>
+                        <p class="card-text">Encounter powerful bears and rugged terrains.</p>
+                        <a href=".html-admin/Grizzly.html" class="btn btn-custom">Explore Now</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-4">
-        <div class="card text-center">
-            <img src="../img/mappa zoo/asian_passage.png" class="card-img-top" alt="Asia Zone">
-            <div class="card-body">
-                <h5 class="card-title">Asian Passage</h5>
-                <p class="card-text">Discover exotic tigers, red pandas, and the serene beauty of Asia.</p>
-                <a href=".html-admin/Ingresso.html" class="btn btn-custom">Explore Now</a>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card text-center container-fluid">
+                    <img src="../img/mappa zoo/verdino.png" class="card-img-top" alt="Asian Passage">
+                    <div class="card-body">
+                        <h5 class="card-title">Ingresso</h5>
+                        <p class="card-text">Discover exotic tigers, red pandas, and the serene beauty of Asia.</p>
+                        <a href=".html-admin/Ingresso.html" class="btn btn-custom">Explore Now</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
