@@ -30,6 +30,7 @@ class Animal:
 def index():
     return render_template('index.html')
 
+#metto un collegamento alle altre pagine html
 @app.route("/about")
 def about():
     return render_template("about_us.html")
@@ -151,7 +152,6 @@ def remove_user():
         
     return redirect('/animals')
 
-#metto un collegamento alle altre pagine html
 
 #da json :
 
