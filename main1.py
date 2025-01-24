@@ -3,7 +3,6 @@ from flask import Flask, request, render_template, redirect
 
 template_dir = os.path.abspath('./templates')
 app = Flask(__name__, template_folder=template_dir)
-
 #app è il nome della flask application
 
 class Animal:
@@ -26,13 +25,23 @@ class Animal:
         return self.Species
 
 
+
 @app.route("/", methods=['GET'])
 def index():
     return render_template('index.html')
 
+@app.route("/utenti")
+def utenti():
+    return render_template('lavoratori.html')
+
+@app.route("/form")
+def form():
+    return render_template('agg-togli.html')
+
 @app.route("/about")
 def about():
-    return render_template('lavoratori.html')
+    
+    return render_template('about_us.html')
     
 #carica i dati degli animali da un file JSON (dati.json), 
 #li trasforma in oggetti Animal, e quindi li passa al template agg-togli.html per la visualizzazione:
